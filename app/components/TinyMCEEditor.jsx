@@ -1,5 +1,7 @@
+// components/TinyMCEEditor.js
 import React, { useEffect, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
+import htmlToRichText from "../utils/htmlToRichText";
 
 const TinyMCEEditor = ({ sdk }) => {
   const [value, setValue] = useState(sdk.field.getValue() || "");
@@ -17,13 +19,14 @@ const TinyMCEEditor = ({ sdk }) => {
   }, [sdk]);
 
   const handleEditorChange = (content) => {
+    const richTextValue = htmlToRichText(content);
     setValue(content);
-    sdk.field.setValue(content);
+    sdk.field.setValue(richTextValue);
   };
 
   return (
     <Editor
-      apiKey="qmbztyhcjkiqtsxhrycd7lzdghfno2fbgit2eo1uhrf0ylw3"
+      apiKey="your-tinymce-api-key"
       value={value}
       init={{
         height: 500,
