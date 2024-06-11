@@ -26,7 +26,7 @@ const TinyMCEEditor = ({ sdk }) => {
 
   return (
     <Editor
-      apiKey="your-tinymce-api-key"
+      apiKey="qmbztyhcjkiqtsxhrycd7lzdghfno2fbgit2eo1uhrf0ylw3"
       value={value}
       init={{
         height: 500,
