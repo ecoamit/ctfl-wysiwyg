@@ -1,4 +1,3 @@
-"use client";
 // app/page.js
 import React, { useEffect, useState } from "react";
 import { init, locations } from "@contentful/app-sdk";
@@ -8,7 +7,6 @@ const HomePage = () => {
   const [sdk, setSdk] = useState(null);
 
   useEffect(() => {
-    // Check if the code is running inside the Contentful iframe
     if (window.self !== window.top) {
       init((sdk) => {
         if (sdk.location.is(locations.LOCATION_ENTRY_FIELD)) {
