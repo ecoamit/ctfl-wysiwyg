@@ -1,4 +1,5 @@
 // app/page.js
+"use client";
 import React, { useEffect, useState } from "react";
 import { init, locations } from "@contentful/app-sdk";
 import TinyMCEEditor from "./components/TinyMCEEditor";
