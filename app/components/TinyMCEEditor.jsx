@@ -5,7 +5,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import htmlToRichText from "../utils/htmlToRichText";
 
 const TinyMCEEditor = ({ sdk }) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(sdk.field.getValue() || "");
 
   useEffect(() => {
     const initialValue = sdk.field.getValue();
