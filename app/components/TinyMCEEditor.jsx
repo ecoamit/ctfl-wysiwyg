@@ -1,5 +1,4 @@
 // components/TinyMCEEditor.js
-"use client";
 import React, { useEffect, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import htmlToRichText from "../utils/htmlToRichText";
@@ -8,19 +7,8 @@ const TinyMCEEditor = ({ sdk }) => {
   const [value, setValue] = useState(sdk.field.getValue() || "");
 
   useEffect(() => {
-    const initialValue = sdk.field.getValue();
-    if (initialValue && initialValue.nodeType) {
-      // Convert initial Rich Text value to HTML if necessary
-      setValue(""); // Assuming initial value is handled as needed
-    }
-
     const detachValueChangeHandler = sdk.field.onValueChanged((newValue) => {
-      if (newValue && newValue.nodeType) {
-        // Convert new Rich Text value to HTML if necessary
-        setValue(""); // Assuming new value is handled as needed
-      } else {
-        setValue(newValue || "");
-      }
+      setValue(newValue);
     });
 
     sdk.window.startAutoResizer();
