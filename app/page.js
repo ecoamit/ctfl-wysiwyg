@@ -1,27 +1,24 @@
-// app/page.js
-"use client";
-import React, { useEffect, useState } from "react";
-import { init, locations } from "@contentful/app-sdk";
-import TinyMCEEditor from "./components/TinyMCEEditor";
+// app/page.jsx
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { init, locations } from '@contentful/app-sdk';
+import TinyMCEEditor from './components/TinyMCEEditor';
 
 const HomePage = () => {
-  const [sdk, setSdk] = useState(null);
+  const [sdk, setSdk] = useState("");
 
   useEffect(() => {
-    if (window.self !== window.top) {
+    
       init((sdk) => {
         if (sdk.location.is(locations.LOCATION_ENTRY_FIELD)) {
           setSdk(sdk);
         }
       });
     }
-  }, []);
+  , []);
 
-  return sdk ? (
-    <TinyMCEEditor sdk={sdk} />
-  ) : (
-    <p>Please open this app within Contentful.</p>
-  );
+  return sdk && <TinyMCEEditor sdk={sdk} /> 
 };
 
 export default HomePage;

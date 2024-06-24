@@ -1,8 +1,10 @@
+// components/TinyMCEEditor.jsx
 'use client';
 
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import htmlToRichText from '../utils/htmlToRichText';
+import richTextToHtml from '../utils/richTextToHtml';
 
 // Dynamically load the TinyMCE editor to prevent SSR issues
 const Editor = dynamic(() => import('@tinymce/tinymce-react').then((mod) => mod.Editor), {
@@ -14,22 +16,13 @@ const TinyMCEEditor = ({ sdk }) => {
 
   useEffect(() => {
     const initialValue = sdk.field.getValue();
-    if (initialValue && initialValue.nodeType) {
-      // If initial value is already rich text, convert it to HTML
-      const blocks = initialValue.content.map(block => block.content.map(textNode => textNode.value).join('\n')).join('\n');
-      setValue(blocks);
-    } else {
-      setValue(initialValue || '');
-    }
+    const htmlValue = richTextToHtml(initialValue);
+    console.log(htmlValue);
+    setValue(htmlValue);
 
-    const detachValueChangeHandler = sdk.field.onValueChanged((newValue) => {
-      if (newValue && newValue.nodeType) {
-        // If new value is rich text, convert it to HTML
-        const blocks = newValue.content.map(block => block.content.map(textNode => textNode.value).join('\n')).join('\n');
-        setValue(blocks);
-      } else {
-        setValue(newValue || '');
-      }
+    const detachValueChangeHandler = sdk.field.onValueChanged(newValue => {
+      const updatedHtmlValue = richTextToHtml(newValue);
+      setValue(updatedHtmlValue);
     });
 
     sdk.window.startAutoResizer();
@@ -40,8 +33,8 @@ const TinyMCEEditor = ({ sdk }) => {
   }, [sdk]);
 
   const handleEditorChange = (content) => {
-    const richTextValue = htmlToRichText(content);
     setValue(content);
+    const richTextValue = htmlToRichText(content);
     sdk.field.setValue(richTextValue);
   };
 
@@ -53,7 +46,7 @@ const TinyMCEEditor = ({ sdk }) => {
         height: 500,
         menubar: false,
         plugins: 'link image code',
-        toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright | code',
+        toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright | code',
       }}
       onEditorChange={handleEditorChange}
     />
