@@ -45,21 +45,8 @@ const TinyMCEEditor = ({ sdk }) => {
       init={{
         height: 500,
         menubar: false,
-        plugins: ["table",
-    "code",
-    "preview",
-    "image",
-    "media",
-    "lists",
-    "directionality",
-    "link",
-    "searchreplace",
-    "anchor",
-    "charmap"],
-        toolbar: "fullScreen code  charmap  preview formatselect undo redo blocks fontfamily fontsize  formatselect " +
-  "anchor link unlink openlink bold italic  underline backcolor  alignleft aligncenter alignright alignjustify " +
-  "searchreplace  bullist numlist ltr rtl outdent indent  " +
-  "removeformat table tabledelete tableprops tablerowprops tablecellprops tablemergecells tableinsertrowbefore tableinsertrowafter tabledeleterow  tableinsertcolbefore tableinsertcolafter tabledeletecol tablerowheader tablecolheader image media superscript subscript",
+        plugins: ["table","code","preview","image","media","lists","directionality","link","searchreplace","anchor","charmap"],
+        toolbar: "fullScreen code  charmap  preview formatselect undo redo blocks fontfamily fontsize  formatselect " + "anchor link unlink openlink bold italic  underline backcolor  alignleft aligncenter alignright alignjustify " + "searchreplace  bullist numlist ltr rtl outdent indent  " + "removeformat table tabledelete tableprops tablerowprops tablecellprops tablemergecells tableinsertrowbefore tableinsertrowafter tabledeleterow  tableinsertcolbefore tableinsertcolafter tabledeletecol tablerowheader tablecolheader image media superscript subscript",
       }}
       onEditorChange={handleEditorChange}
     />
