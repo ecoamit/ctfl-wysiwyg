@@ -40,13 +40,26 @@ const TinyMCEEditor = ({ sdk }) => {
 
   return (
     <Editor
-      apiKey="qmbztyhcjkiqtsxhrycd7lzdghfno2fbgit2eo1uhrf0ylw3"
+      apiKey="shnyf4d14xq4614v6a2d3qgb91nl39yfqqhvkqmsm7a3l9mf"
       value={value}
       init={{
         height: 500,
         menubar: false,
-        plugins: 'link image code',
-        toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright | code',
+        plugins: ["table",
+    "code",
+    "preview",
+    "image",
+    "media",
+    "lists",
+    "directionality",
+    "link",
+    "searchreplace",
+    "anchor",
+    "charmap"],
+        toolbar: "fullScreen code  charmap  preview formatselect undo redo blocks fontfamily fontsize  formatselect " +
+  "anchor link unlink openlink bold italic  underline backcolor  alignleft aligncenter alignright alignjustify " +
+  "searchreplace  bullist numlist ltr rtl outdent indent  " +
+  "removeformat table tabledelete tableprops tablerowprops tablecellprops tablemergecells tableinsertrowbefore tableinsertrowafter tabledeleterow  tableinsertcolbefore tableinsertcolafter tabledeletecol tablerowheader tablecolheader image media superscript subscript",
       }}
       onEditorChange={handleEditorChange}
     />
